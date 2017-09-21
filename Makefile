@@ -1,5 +1,5 @@
 PRJ_NAME       = blink
-MCU_TARGET     = atmega328p
+MCU_TARGET     = attiny2313
 PROGRAMMER     = usbasp
 
 # The above values should be set according to the individual project.
@@ -15,7 +15,6 @@ CFLAGS         = -g -mmcu=${MCU_TARGET} -Wall ${OPTIMIZE}
 
 ${PRJ_NAME}.hex : ${PRJ_NAME}.elf
 	${OBJCOPY} -O ihex -R .eeprom ${PRJ_NAME}.elf ${PRJ_NAME}.hex
-	@echo Generated ${PRJ_NAME}.hex, ${shell stat -c%s ${PRJ_NAME}.hex} bytes
 ${PRJ_NAME}.elf : ${PRJ_NAME}.o
 	${CC} ${CFLAGS} -o ${PRJ_NAME}.elf ${PRJ_NAME}.o
 ${PRJ_NAME}.o : ${PRJ_NAME}.c
